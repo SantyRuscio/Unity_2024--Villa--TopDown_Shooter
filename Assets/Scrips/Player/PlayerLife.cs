@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
@@ -14,14 +15,42 @@ public class PlayerLife : MonoBehaviour
     public float maxLife = 100;
     private float _currentLife;
 
+    private LifePickup _botequin;
+    
 //-------------------------------------------------------------------------------------------------------------------------------------------
-    public void SetKitNear(bool NewState)
+    public void SetKitNear(LifePickup BotequinEnElPiso)
     {
-        _medKitNear = NewState;
-        Debug.Log(NewState);
+        _botequin = BotequinEnElPiso;
+
+        if(BotequinEnElPiso != null)
+            Debug.Log(BotequinEnElPiso.name);
     }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
+    public void HitEnemy(float hit)
+    {
+        _currentLife = _currentLife - hit;
+        Debug.Log("El enemigo te pego");
+
+        ChecLife();
+    }
+ //-------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void ChecLife()
+    {
+        if (_currentLife > 0)
+        {
+            Debug.Log("Sigues vivo");
+        }
+        else
+        {
+            Debug.Log("-----------------------------------------------------------");
+            Debug.Log("Moriste");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------
     public void TakeDamage(float damage)  // DAMAGE RECIBIDO ---- falta scrip del que hace la accion 
     {
         _currentLife = _currentLife - damage;
@@ -55,9 +84,10 @@ public class PlayerLife : MonoBehaviour
 //-------------------------------------------------------------------------------------------------------------------------------------------
     private void CheckInput()
     {
-        if(Input.GetKeyDown(KeyCode.E) && _medKitNear == true)
+        if(Input.GetKeyDown(KeyCode.E) && _botequin != null)
         {
             GetHealth();
+            Destroy(_botequin.gameObject);
         }
     }
 

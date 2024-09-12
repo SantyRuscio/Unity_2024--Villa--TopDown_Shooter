@@ -11,7 +11,7 @@ public class LifePickup : MonoBehaviour
 
         if (playerLife != null)
         {
-            playerLife.SetKitNear(true);
+            playerLife.SetKitNear(this);
         }
     }
 
@@ -22,7 +22,7 @@ public class LifePickup : MonoBehaviour
 
         if (playerLife != null)
         {
-            playerLife.SetKitNear(false);
+            playerLife.SetKitNear(null);
         }
     }
 }

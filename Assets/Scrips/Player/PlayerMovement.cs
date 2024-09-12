@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 3f;
-
     private bool _arma = false;
 
     private int _currentAmmunation = 0;
+
+    public float speed = 3f;
+    public float _vida = 3f;
 
     public Transform shootPoint;
     public Bullet bulletPrefab;
@@ -24,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         _currentAmmunation = _currentAmmunation + 10;
     }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------
+ //-------------------------------------------------------------------------------------------------------------------------------------------
     private void Update()
     {
         InputChecker();
@@ -33,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
 //-------------------------------------------------------------------------------------------------------------------------------------------
     private void InputChecker()
     {
+        //Se llama en el update
+
         MovePlayer();
 
         CheckShootInput();
