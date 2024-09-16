@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
@@ -6,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] Camera mainCamera ;
+
     private bool _arma = false;
 
     private int _currentAmmunation = 0;
@@ -15,8 +18,17 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform shootPoint;
     public Bullet bulletPrefab;
+    //-------------------------------------------------------------------------------------------------------------------------------------------
+    private void Start()
+    {
+       
+        if  (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+    }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------------------
     public void GetPistol()
     {
         if(_arma == false)
@@ -39,11 +51,21 @@ public class PlayerMovement : MonoBehaviour
         //Se llama en el update
 
         MovePlayer();
-
+        RotatePlayer();
         CheckShootInput();
     }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------------------
+    private void RotatePlayer()
+    {
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0;
+
+        Vector3 lookAtDireccion = mouseWorldPosition - transform.position;
+        transform.right = lookAtDireccion;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------
     private void MovePlayer()
     {
         Vector2 Movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

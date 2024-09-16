@@ -1,5 +1,5 @@
 //------------------------------------------
-//              Santiago Ruscio & Tomas El drogas
+//              Santiago Ruscio & Tomas Maradona
 //------------------------------------------
 
 
