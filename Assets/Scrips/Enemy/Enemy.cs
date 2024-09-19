@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
 
     private void Patrol()
     {
-        Debug.Log("Patrolando");
+        Debug.Log("No te vio");
     }
 
     private void OnCollisionStay2D(Collision2D collision)
