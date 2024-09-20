@@ -1,21 +1,33 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : MonoBehaviour
 {
+    private Vector3 _direction;
 
     public float velocidad;
+    public float lifeSpan = 10f;
 
     public float Damage = 50;
 
     //-------------------------------------------------------------------------------------------------------------------------------------------
-    void Update()
+    public void SetDirection(Vector3 direction)
     {
-        Input.GetMouseButton(0);
+        // reciibo la dirfecion que tengo que ir y la guardo para suarla
+        _direction = direction; 
+    }
 
-        Vector2 Movement = new Vector2(1 * velocidad * Time.deltaTime, 0);
-        transform.position = transform.position + (Vector3)Movement;
+    //-------------------------------------------------------------------------------------------------------------------------------------------
+    private void Start()
+    {
+        Destroy(gameObject, lifeSpan);
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------
+    private void Update()
+    {
+        // voy hacia la direccion
+        transform.position = transform.position + _direction * velocidad * Time.deltaTime;
     }
   
     //-------------------------------------------------------------------------------------------------------------------------------------------
@@ -26,8 +38,9 @@ public class Bullet : MonoBehaviour
         if (enemyLife != null)
         {
             enemyLife.HitBullet(Damage);
-            Destroy(gameObject);
         }
-    }
 
+        // Que se destruya con cuaolquier colision
+        Destroy(gameObject); 
+    }
 }

@@ -98,7 +98,11 @@ public class PlayerMovement : MonoBehaviour
 //-------------------------------------------------------------------------------------------------------------------------------------------
     private void Shoot()
     {
-        Instantiate(bulletPrefab, shootPoint.transform.position, shootPoint.transform.rotation);
+        // Con la funcion Instanciate Creo una bala nueva en el mundo, y la guardo en una variable para usarla
+        Bullet currentBullet = Instantiate(bulletPrefab, shootPoint.transform.position, shootPoint.transform.rotation);
+        
+        // Le doy direcion de disparo a la bala que guarde antes
+        currentBullet.SetDirection(shootPoint.transform.right);
 
         Debug.Log("Disparo");
 
