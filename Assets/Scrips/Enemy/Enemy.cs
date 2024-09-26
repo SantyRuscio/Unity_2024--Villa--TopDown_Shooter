@@ -17,11 +17,12 @@ public class Enemy : MonoBehaviour
 
     public Transform player;
 
+//-------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
         _timer = coolDown;
     }
-
+ //-------------------------------------------------------------------------------------------------------------------------------------------
     void Update()
     {
         _timer = _timer + Time.deltaTime;
@@ -38,7 +39,8 @@ public class Enemy : MonoBehaviour
         bool isPlayerRight = transform.position.x < player.position.x;
         Flip(isPlayerRight);
     }
-
+  
+//-------------------------------------------------------------------------------------------------------------------------------------------
     private void Flip(bool isPlayerRight)
     {
         if ((isFacingRight && !isPlayerRight))
@@ -47,6 +49,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------
     private void MoveToPlayer()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -58,6 +61,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("No te vio");
     }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------
     private void OnCollisionStay2D(Collision2D collision)
     {
         PlayerLife player = collision.gameObject.GetComponent<PlayerLife>();
@@ -74,4 +78,6 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, distanceToFllow);
     }
+
+
 }

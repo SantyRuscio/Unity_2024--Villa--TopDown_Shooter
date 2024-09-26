@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyLife : MonoBehaviour
 {
     public float _currentLifeEnemy = 100;
+    public int vivos;
 
     public void HitBullet(float Damage)
     {
@@ -14,7 +16,7 @@ public class EnemyLife : MonoBehaviour
         CheckLife();
     }
 
-    private void CheckLife()
+    public void CheckLife()
     {
         if (_currentLifeEnemy > 0)
         {
@@ -23,7 +25,8 @@ public class EnemyLife : MonoBehaviour
         else
         {
             Debug.Log("-------------------ENEMIGO MURIO----------------------------------------");
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 }
+    

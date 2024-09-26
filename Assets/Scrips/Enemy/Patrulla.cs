@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -13,6 +15,9 @@ public class Patrulla : MonoBehaviour
     private bool _playerOnSight;
     private int currentWaypoint;
     public Transform player;
+    private float _timer;
+    public float coolDown;
+    public float hit = 34f;
 
     void Update()
     {
@@ -70,6 +75,16 @@ public class Patrulla : MonoBehaviour
             currentWaypoint = 0;
         }
         isWaiting = false;
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        PlayerLife player = collision.gameObject.GetComponent<PlayerLife>();
+
+        if (player != null && _timer >= coolDown)
+        {
+            player.HitEnemy(hit);
+            _timer = 0;
+        }
     }
     private void OnDrawGizmos()
     {
