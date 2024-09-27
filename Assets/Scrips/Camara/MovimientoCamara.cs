@@ -20,7 +20,7 @@ public class MovimientoCamara : MonoBehaviour
     }
 
     public void setFollowPlayer(bool val)
-    {
+    { 
         followPlayer = val;
     }
 
