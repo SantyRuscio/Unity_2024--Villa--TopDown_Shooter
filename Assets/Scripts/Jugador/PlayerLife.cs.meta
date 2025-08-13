@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1509316793aa33c498a20c742426f7ff
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - controlSonido: {instanceID: 0}
+  - SonidoDamage: {instanceID: 0}
+  - gameOverTextPrefab: {fileID: 8338712485374557253, guid: 0046a3252efcccb4e9db1ff5f7f9ffa8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
